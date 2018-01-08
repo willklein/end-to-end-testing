@@ -15,7 +15,7 @@ import {
   Text,
 } from 'spectacle';
 
-import markdown from "raw-loader!markdown.md";
+import markdown from "./markdown.md";
 
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
@@ -53,6 +53,19 @@ export default class Presentation extends React.Component {
           </Text>
         </Slide>
         {MarkdownSlides(markdown)}
+        {MarkdownSlides`
+#### Create Multiple Slides in Markdown
+All the same tags and elements supported in <Markdown /> are supported in MarkdownSlides.
+---
+Slides are separated with **three dashes** and can be used _anywhere_ in the deck. The markdown can either be:
+* A Tagged Template Literal
+* Imported Markdown from another file
+---
+Add some inline code to your markdown!
+\`\`\`js
+const myCode = (is, great) => 'for' + 'sharing';
+\`\`\`
+          `}
         <Slide transition={['fade']} bgColor="tertiary">
           <Heading size={6} textColor="primary" caps>
             Typography
