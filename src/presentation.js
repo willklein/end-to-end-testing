@@ -3,16 +3,14 @@ import React from 'react';
 
 // Import Spectacle Core tags
 import {
-  BlockQuote,
-  Cite,
   Deck,
-  Heading,
-  ListItem,
-  List,
+  // Heading,
+  // ListItem,
+  // List,
   MarkdownSlides,
-  Quote,
-  Slide,
-  Text,
+  // Quote,
+  // Slide,
+  // Text,
 } from 'spectacle';
 
 import markdown from "./markdown.md";

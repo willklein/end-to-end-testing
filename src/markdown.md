@@ -3,76 +3,84 @@
 Will Klein
 
 ---
+![Amelia Island with Diane](images/amelia-island.jpg)
+---
 ## How do you test your frontend?
 
 ---
-## Testing Pyramid
-![testing pyramid](https://martinfowler.com/bliki/images/testPyramid/test-pyramid.png)
-
-https://martinfowler.com/bliki/TestPyramid.html
+![Nicholas](images/nicholas-twitter.jpg)
 
 ---
-## Why are UI tests are valuable?
+## Selenium: Thank You
+
+![Selenium logo](images/selenium.png)
 
 ---
-## Why are UI tests expensive?
-
----
-## Selenium...
+## Selenium Architecture
 
 ![Selenium system diagram](images/selenium-diagram.jpg)
 
 ---
-## Your stack is simple, fast, consistent, right?
-
----
-## A testing story
-
-![penguin crying](images/penguin-crying.gif)
-
----
-## Webdriver.io
-
-![webdriver.io logo](images/webdriverio.png)
-
----
-## Webdriver.io
-
-![webdriver.io talk](images/webdriverio-talk.png)
-
----
 ![Cypress logo](images/cypress.png)
 
 ---
-## Demo Time
-
+### </>
 
 ---
-## It works!
+## We have improvements
 
-Our tests... they work!
+---
+## Test running
 
-Also... amazing to develop.
+---
+### </>
+
+---
+## UI state
+
+---
+### </>
+
+---
+## Debugging
+
+---
+### </>
+
+---
+## Other nice things
+- implicit waits
+- direct access to DOM
+- service mocking
+- rolled up tooling
+
+---
+## Tradeoffs
+- it's a new tool
+- it has a ["style"](https://docs.cypress.io/guides/core-concepts/variables-and-aliases.html#Return-Values)
+- https://docs.cypress.io/guides/references/trade-offs.html
+
+---
+## It's Ambitious
 
 ---
 ### The Game Has Changed
 
+---
+### Remember Makefile? Sublime? Selenium?
 
 ---
 ## Acknowledgements
 
 ![Cypress logo](images/cypress.png)
 
----
-## Acknowledgements
+[I promise, they are nice](https://gitter.im/cypress-io/cypress)
 
-![Ecliptic logo](images/ecliptic.png)
 
 ---
 ## Acknowledgements
 
-![Nicholas](images/nicholas.jpg)
-
+![Nicholas and family](images/nicholas.jpg)
 ---
 ## Thank you
 
