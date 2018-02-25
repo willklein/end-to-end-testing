@@ -1,7 +1,8 @@
 {
   "name": "end-to-end-testing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
+  "homepage": "https://willklein.github.io/end-to-end-testing/",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
