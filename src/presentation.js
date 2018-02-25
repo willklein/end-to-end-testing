@@ -1,7 +1,5 @@
-// Import React
 import React from "react";
 
-// Import Spectacle Core tags
 import {
   BlockQuote,
   Cite,
@@ -11,20 +9,14 @@ import {
   Link,
   List,
   ListItem,
-  MarkdownSlides,
   Notes,
   Quote,
   Slide,
   Text,
-  TableItem,
-  Appear
 } from "spectacle";
 
-import markdown from "./markdown.md";
-
-// Import theme
 import createTheme from "spectacle-theme-nova";
-// import api from 'eslint'
+
 const theme = createTheme();
 
 function N() {
@@ -47,6 +39,8 @@ export default class Presentation extends React.Component {
           <Notes>
             This talk is about end to end testing, and why the game has changed
             <N/>
+            When something significant comes out, we call them game changers. They change the way we do our work, or the way we think about something
+            <N/>
             If you, or someone on your team, has done this type of testing in the past, you might know or have heard that it can be... challenging.
             <N/>
             I'd like to share some of the latest developments in this area, and why now is the best time ever to be building, and testing our web apps.
@@ -54,7 +48,10 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Image src="images/amelia-island.jpg" />
+          <Image
+            height="600"
+            src="images/amelia-island.jpg"
+          />
           <Text>Will &amp; Diane @ JSConf US 2013<br/>Amelia Island, Florida, USA</Text>
 
           <Notes>
@@ -86,7 +83,6 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size="2">JSConf</Heading>
           <Image src="images/nicholas-twitter.jpg" />
           <Text>Nicholas Boll</Text>
 
@@ -105,9 +101,8 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size="2"></Heading>
+          <Heading size="2">Selenium</Heading>
           <Image src="images/selenium.png" />
-          <Text>Selenium</Text>
 
           <Notes>
             I found they not only had a lot of tests, but used a tool we had used with mixed success on my previous team: Selenium.
@@ -147,8 +142,6 @@ export default class Presentation extends React.Component {
             We'll push a commit, tests will run, and we'll see a test failure.
             <N/>
             Run the test again, and it passes. Some other test fails. We saw so much of this, we had a build job called the flaky finder. It would just run whatever was on master, over and over again, so we could find the flakies. This challenge still pervaded our continuous integration builds and slowed us down, in a very frustrating way.
-            <N/>
-
           </Notes>
         </Slide>
 
@@ -176,7 +169,6 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-
           <Notes>
             I continued to use Selenium at another company, and then late last year, I found myself consulting on a project.
             <N/>
@@ -271,15 +263,13 @@ export default class Presentation extends React.Component {
           </Notes>
         </Slide>
 
-
-
         <Slide>
           <Heading size="2">Tradeoffs</Heading>
 
           <List>
             <ListItem>it's a new tool</ListItem>
             <ListItem>it has a "style"</ListItem>
-            <ListItem>https://docs.cypress.io/guides/references/trade-offs.html</ListItem>
+            <ListItem>see <Link href="https://docs.cypress.io/guides/references/trade-offs.html">Trade-offs</Link> in the docs</ListItem>
           </List>
 
           <Notes>
@@ -405,7 +395,7 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size="2">Thank You!</Heading>
 
-          <Text>@WillsLab</Text>
+          <Text>@willslab</Text>
           <Text>will@willklein.co</Text>
 
           <Notes>
