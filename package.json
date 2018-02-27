@@ -38,7 +38,7 @@
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.2.0",
     "spectacle": "^4.0.0",
-    "spectacle-theme-nova": "^1.4.1",
+    "spectacle-theme-nova": "willklein/spectacle-theme-nova#77899ebb09",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
