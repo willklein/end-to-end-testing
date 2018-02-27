@@ -83,8 +83,8 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Image src="images/nicholas-twitter.jpg" />
-          <Text>Nicholas Boll</Text>
+          <Image src="images/nicholas.jpg" />
+          <Text>Meet Nicholas Boll</Text>
 
           <Notes>
             I asked everyone I met at JSConf this question, and there was one person I found myself talking to for hours.
@@ -92,11 +92,13 @@ export default class Presentation extends React.Component {
             This is Nicholas Boll.
             He had a LOT to say.
             <N/>
+            It turns out, his wife Katrina had met Diane in the significant others track. Our partners were thrilled to introduce us, but... they were too late.
+            <N/>
             I was impressed with what his team had done, writing thousands of unit, integration, and end to end tests. I was so impressed, I applied to work at his company,
             <N/>
-            and a few months later, I joined him at Rally Software. It turns out, his wife Katrina had met my wife Diane while we were at the conference. When we moved out to Colorado, they helped us unload the moving truck, invited us for the holidays, and made us feel like we were home.
+            and a few months later, I was hired and we moved out to Colorado. They helped us unload the moving truck, invited us for the holidays, and made us feel at home.
             <N/>
-            It's amazing the kind of friendships and career changes that happen at JSConf.
+            It's amazing the kind of friendships that begin at JSConf.
           </Notes>
         </Slide>
 
@@ -105,7 +107,9 @@ export default class Presentation extends React.Component {
           <Image src="images/selenium.png" />
 
           <Notes>
-            I found they not only had a lot of tests, but used a tool we had used with mixed success on my previous team: Selenium.
+            Joining their team, I found they not only had a lot of tests, but a lot of the same problems I had experienced already. They had more of it in fact, because they had so many more tests!
+            <N/>
+            They relied on the same tool we had used with mixed success on my previous team: Selenium.
             <N/>
             Selenium is a set of tools built in Java that lets us write test and browser automation code in any language, send commands to a Selenium service, and have that service manage those commands as it tries to execute them in any web browser.
             <N/>
@@ -186,7 +190,7 @@ export default class Presentation extends React.Component {
           <Notes>
             That tool is Cypress. It's maybe a few years old now, and what started as an experiment by Brian Mann, is now supported by a team of full-time developers.
             <N/>
-            I was quickly impressed with how quickly it was to get up and running, and to start testing our application.
+            I was impressed with how quickly it was to get up and running, and to start testing our application.
             <N/>
             I found some very powerful differences developing these tests.
             <N/>
@@ -195,42 +199,70 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size="2">Placeholder for recorded demo slide - Test Running</Heading>
+          <Heading size="2">Running from CLI</Heading>
+          <Image src="captures/cypress-run 720.gif" />
 
           <Notes>
             We have improvements
             <N/>
             First is the test running experience. We can run Cypress headlessly, and use it in a build within the command line.
-            <N/>
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading size="2">Running from CLI - Results</Heading>
+          <Image src="captures/cypress-run end 720.gif" />
+
+          <Notes>
+            This is nice, and there's a screen recording of the whole test run unless we disable it.
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading size="2">Running the Test Runner</Heading>
+          <Image src="captures/cypress-open 720.gif" />
+
+          <Notes>
             If we want to write tests, or review a failure, we might launch the Cypress app and pull things up in the browser.
             <N/>
-            If we run the tests, we get a really convenient view of our test runner, the tests being executed, some information about the test run, like the timing, the address, and the viewport size.
+            Opening Cypress in this way gives us an Electron app where we can run any of our spec files.
+            <N/>
+            Running a spec file gives us the Test Runner. The UI has some useful information, including the tests being executed, a summary of tests passed, failed, and how long they take. There's also the window location and the viewport dimenions.
             <N/>
             Our app is right there in the same view. This seems like a small thing, but there's more to it.
           </Notes>
         </Slide>
 
         <Slide>
-          <Heading size="2">Placeholder for recorded demo slide - UI State</Heading>
+          <Heading size="2">UI State Time Travel</Heading>
+          <Image src="captures/cypress-open ui state 720.gif" />
 
           <Notes>
-            The Command Log shows all of our tests. It's not just a nice treeview of all the commands and assertions though.
+            The lists of tests on the left is interactive. This is the "Command Log."
             <N/>
             We can interact with it, and even...
-            We can time travel through each UI state. Normally, I might need to drop a breakpoint to get see exactly what failed, or to view a test recording, which Cypress gives us as well. But I can just use the Command Log to see what happened every step of the way.
+            We can time travel through each UI state. Normally, if I was writing a test or debugging  a failure, I might need to drop a breakpoint in my test code or review a test recording, which Cypress gives us as well. But I can just use the Command Log to see what happened every step of the way.
             <N/>
             Some of these commands have a before and after context. Below our app we can select the before and after. This all works through a series of DOM snapshots, and Cypress let's us replay and debug them at will.
           </Notes>
         </Slide>
 
         <Slide>
-          <Heading size="2">Placeholder for recorded demo slide - Debugging Experience</Heading>
+          <Heading size="2">Command Log Debugging</Heading>
+          <Image src="captures/cypress-open debug command log 720.gif" />
 
           <Notes>
             Speaking of debugging, that part of the experience has some serious upgrades.
             <N/>
             First, any time we interact with the command log, we see the relevant things logged for us in the console, for our convenience. We might otherwise need to drop in our own breakpoints and console logs to get this information so easily.
-            <N/>
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading size="2">DOM Debugging</Heading>
+          <Image src="captures/cypress-open debug DOM 720.gif" />
+
+          <Notes>
             We can inspect our DOM snapshots like we normally would, when developing our app. This is easier than before because it's all right within a single window, a small convenience, but those conveniences are starting to add up.
             <N/>
             When we need to debug our app, we can just put breakpoints in and we can debug whatever we need to from the appropriate scope and stack.
@@ -260,6 +292,8 @@ export default class Presentation extends React.Component {
             Cypress supplies some really useful service mocking utilities. We can specify a route, like `/users` (slash users), match on request method or parameters, like a 'GET' method, and provide fixture data that should return for that matching service call.
             <N/>
             Cypress does this using Sinon.js, and it's using other open source tools under the hood like Mocha and Chai. They've rolled up these tools for us in one cohesive package, and we can spend less time selecting, maintaining, and updating these dependencies.
+            <N/>
+            Oh, another one they include is jQuery. For anyone that thinks jQuery is obsolete, it may always be welcome in our browser tests.
           </Notes>
         </Slide>
 
