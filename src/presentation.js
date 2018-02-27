@@ -72,7 +72,7 @@ export default class Presentation extends React.Component {
             <N />
             We've developed some really good answers for unit testing, how we test our functions, classes, and UI components in isolation.
             <N />
-            I think that we still have trouble at the other end of the spectrum, when we integrate these units together, a lot can go wrong.
+            We still have trouble at the other end of the spectrum, when we integrate these units together, a lot can go wrong.
             To really have confidence in our apps, we need to know that things work, end to end.
             <N />
             That when we load our app, it let's us do that one thing our users care about, and that everything from the UI, to the web APIs, to the database, to the deployments,
@@ -131,7 +131,7 @@ export default class Presentation extends React.Component {
           <Notes>
             Then there's the greatest complexity of all: our application.
             <N/>
-            I think it's typical that our apps make calls to a backend, at page load, or whenever a user interacts with the UI.
+            Our apps make calls to a backend, at page load, or whenever a user interacts with the UI. Rendering is typically asynchronous, and it's hard to know when it's "done."
             <N/>
             I've found that these calls don't always come back with the same timing, or in the same order. Sometimes, backends experience higher than usual load, some things take longer than usual, and we see strange behavior in our app. I've found this is very typical in virtualized build and test environments, where we usually run these sorts of tests. These abberations can even cause our tests to fail.
           </Notes>
@@ -227,9 +227,14 @@ export default class Presentation extends React.Component {
             <N/>
             Opening Cypress in this way gives us an Electron app where we can run any of our spec files.
             <N/>
-            Running a spec file gives us the Test Runner. The UI has some useful information, including the tests being executed, a summary of tests passed, failed, and how long they take. There's also the window location and the viewport dimenions.
+            Running a spec file gives us the Test Runner. The header section has some useful information:
+            <br/>
+            * a summary of tests passed, failed, and how long they take. <br/>
+            * There's also the URL preview and the viewport size.
             <N/>
-            Our app is right there in the same view. This seems like a small thing, but there's more to it.
+            We have a Command Log on the left, with detailed information based on our test commands.
+            <N/>
+            Our app preview is on the right. All of this, in a single UI. This may seem like a small convenience, but there's more to it.
           </Notes>
         </Slide>
 
@@ -254,7 +259,7 @@ export default class Presentation extends React.Component {
           <Notes>
             Speaking of debugging, that part of the experience has some serious upgrades.
             <N/>
-            First, any time we interact with the command log, we see the relevant things logged for us in the console, for our convenience. We might otherwise need to drop in our own breakpoints and console logs to get this information so easily.
+            First, any time we interact with the command log, relevant DOM elements and network requests log to the console. We might otherwise need to drop in our own breakpoints and console logs to get this information so easily.
           </Notes>
         </Slide>
 
@@ -263,13 +268,13 @@ export default class Presentation extends React.Component {
           <Image src="captures/cypress-open debug DOM 720.gif" />
 
           <Notes>
-            We can inspect our DOM snapshots like we normally would, when developing our app. This is easier than before because it's all right within a single window, a small convenience, but those conveniences are starting to add up.
+            We can inspect our DOM snapshots to understand the UI state, or what we might want to select for in our tests.
             <N/>
-            When we need to debug our app, we can just put breakpoints in and we can debug whatever we need to from the appropriate scope and stack.
+            We can debug our app and inspect the appropriate scope and stack.
             <N/>
-            From that same debugger, we can hit breakpoints in our test code, again debugging from that context however we need to.
+            Or we can debug our test code from here.
             <N/>
-            Having both debugging contexts available to use in the same debugger is really awesome.
+            Having all of these debugging contexts available to use in the same debugger is really awesome.
           </Notes>
         </Slide>
 
@@ -306,7 +311,7 @@ export default class Presentation extends React.Component {
             <N/>
             They have tried to share general best practices on how to write good end-to-end tests. It's not even specific to Cypress. They suggest good ideas that apply regardless of the tool.
             <N/>
-            I would even say it can be opinionated. I think that's a good thing.
+            I would even say it can be opinionated, and that's a good thing.
           </Notes>
         </Slide>
 
@@ -407,7 +412,7 @@ export default class Presentation extends React.Component {
             <N/>
             We see ecosystems of plugins and extensions flourish around them, making them infinitely more capable, customizable, and joyful to use.
             <N/>
-            I've had a lot of fun using Cypress, and I think we're still in the early days before the community catches on, and its tooling ecosystem grows into something beyond what their core team envisioned.
+            I've had a lot of fun using Cypress, and we're still in the early days before the community catches on, and its tooling ecosystem grows into something beyond what their core team envisioned.
           </Notes>
         </Slide>
 
@@ -436,7 +441,7 @@ export default class Presentation extends React.Component {
           <Notes>
             I also want to thank Nicholas. I'm happy to share he still goes on and on for hours, and I'm still learning a lot from him.
             <N/>
-            Our daughters? They were born two years ago, a month apart. This summer, they will both become big sisters.
+            Our daughters? They were born two years ago, a month apart. This summer, they will both become big sisters. I really wanted to bring my family here, but her doctor
           </Notes>
         </Slide>
 
