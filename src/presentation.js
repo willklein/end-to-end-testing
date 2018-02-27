@@ -298,6 +298,19 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
+          <Heading size="2">Best Practices</Heading>
+          <Image src="images/timeouts-and-performance.png" />
+
+          <Notes>
+            As I've been re-reading their blog posts and the documentation, I realized something else that shines through in a really awesome way.
+            <N/>
+            They have tried to share general best practices on how to write good end-to-end tests. It's not even specific to Cypress. They suggest good ideas that apply regardless of the tool.
+            <N/>
+            I would even say it can be opinionated. I think that's a good thing.
+          </Notes>
+        </Slide>
+
+        <Slide>
           <Heading size="2">Tradeoffs</Heading>
 
           <List>
@@ -312,16 +325,17 @@ export default class Presentation extends React.Component {
             It's a new tool for your team to learn. I don't take that lightly, but coming from Selenium, I found the switch to be extremely quick, and it paid off in under an hour.
             <N/>
             It has its own style that felt strange to me at first. It makes sense though. Cypress really likes chaining, and there's a reason why so many of their commands are chainable.
+            (TODO: elaborate on this)
             <N/>
-            Asynchronicity is exposed to us, and I think that's a very good thing. We may find ourselves executing a command, and putting a `.then` (dot then) to wait for the promise to finish before we execute the next thing. We can use async/await (async await) too. I've seen some other Selenium-based tools hide this from us, and honestly, that was weird. If you're used to that, this might require an adjustment.
+            Asynchronicity is exposed to us, and it helps us understand what's going on. We may find ourselves executing a command, and putting a `.then` (dot then) to wait for the promise to finish before we execute the next thing. I've seen some other Selenium-based tools hide this from us, and honestly, that was weird. If you're used to that, this might require an adjustment.
             <N/>
             They are very upfront about their tradeoffs, like why they only support Chrome and Electron browser right now, though they're working on Firefox and support for Edge will likely come next.
             <N/>
-            Running everything in the browser, and within a single tab instance, also creates some limitations. They describe the impact and you really should review the trade-offs for yourself.
+            Running everything in the browser, and within a single tab instance, also creates some limitations. They are clear about the impact of this.
             <N/>
             Likely, the greatest way to address these trade-offs is to have a small set of Selenium tests that exercise the capabilities Cypress is missing.
             <N/>
-            I have found that 99% of the value of my end-to-end tests is better handled using Cypress, and if cross-browser support becomes a issue, I might automate visual diff tests with UI screenshots using Selenium.
+            I have found that 99% of the value of my end-to-end tests is better handled using Cypress, and if cross-browser support becomes a issue, I might automate visual diff tests with UI screenshots runing on Selenium.
           </Notes>
         </Slide>
 
@@ -337,7 +351,7 @@ export default class Presentation extends React.Component {
             <N/>
             There will be things they haven't developed yet, like cross-browser support.
             <N/>
-            There will be bugs, though I've run into none in my experience, I just know there's a large surface area of code for them to write and maintain, and they'll need to keep up with any issues that come up.
+            There will be bugs, though I don't remember any in my experience, I just know there's a large surface area of code for them to write and maintain, and they'll need to keep up with any issues that come up.
           </Notes>
         </Slide>
 
@@ -349,7 +363,7 @@ export default class Presentation extends React.Component {
             <N/>
             If you are using Selenium and getting frustrated, try this, I think it'll go well.
             <N/>
-            If you've never written an end to end test before, it's better than ever to get started.
+            If you've never written an end to end test before, now is better than ever to get started.
           </Notes>
         </Slide>
 
