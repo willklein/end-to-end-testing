@@ -23,6 +23,19 @@ function N() {
   return (<span><br/><br/></span>)
 }
 
+function Extra(props) {
+  return (
+    <React.Fragment>
+      <br/>
+      --
+      <br />
+      <i>{props.children}</i>
+      <br/>
+      --
+    </React.Fragment>
+  );
+}
+
 export default class Presentation extends React.Component {
   render() {
     return (
@@ -185,7 +198,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Image src="images/cypress.png" />
+          <Image src="images/cypress-io-logo-inverse.png" />
 
           <Notes>
             That tool is Cypress. It's maybe a few years old now, and what started as an experiment by Brian Mann, is now supported by a team of full-time developers.
@@ -291,14 +304,16 @@ export default class Presentation extends React.Component {
             We get some other nice things
             <N/>
             Cypress commands implicitly wait for our app to render after a page load or UI interaction, so we don't need to handle that ourselves
+            <Extra>it will retry if something isn't found, with a 4 second timeout by default. you can easily override this to be shorter if you like</Extra>
             <N/>
-            Selenium was always passing DOM information through APIs to our test code. We get direct access to the DOM here, because we're running in the same JavaScript runtime
+            Selenium only gave us serialized DOM information in our test code. It had to be passed through APIs from the browser and through Selenium. Here, we get direct access to the DOM, because Cypress runs in the same JavaScript runtime.
             <N/>
             Cypress supplies some really useful service mocking utilities. We can specify a route, like `/users` (slash users), match on request method or parameters, like a 'GET' method, and provide fixture data that should return for that matching service call.
             <N/>
-            Cypress does this using Sinon.js, and it's using other open source tools under the hood like Mocha and Chai. They've rolled up these tools for us in one cohesive package, and we can spend less time selecting, maintaining, and updating these dependencies.
+            Cypress does this using Sinon.js, and it's using other open source tools under the hood like Mocha and Chai. They've rolled up these tools for us in one cohesive package, so we can spend less time selecting and maintaining these dependencies.
             <N/>
-            Oh, another one they include is jQuery. For anyone that thinks jQuery is obsolete, it may always be welcome in our browser tests.
+            Oh, another one they include is jQuery. For anyone that thinks jQuery is obsolete, it will always be welcome in our browser tests.
+            <Extra>The selecting and DOM traversal API is hard to beat.</Extra>
           </Notes>
         </Slide>
 
@@ -307,11 +322,11 @@ export default class Presentation extends React.Component {
           <Image src="images/timeouts-and-performance.png" />
 
           <Notes>
-            As I've been re-reading their blog posts and the documentation, I realized something else that shines through in a really awesome way.
+            As I've been re-reading their blog posts and the documentation, I realized something else.
             <N/>
             They have tried to share general best practices on how to write good end-to-end tests. It's not even specific to Cypress. They suggest good ideas that apply regardless of the tool.
             <N/>
-            I would even say it can be opinionated, and that's a good thing.
+            -- I would even say it can be opinionated, and that's a good thing. --
           </Notes>
         </Slide>
 
@@ -327,12 +342,14 @@ export default class Presentation extends React.Component {
           <Notes>
             There are certainly tradeoffs
             <N/>
-            It's a new tool for your team to learn. I don't take that lightly, but coming from Selenium, I found the switch to be extremely quick, and it paid off in under an hour.
+            It's a new tool for your team to learn.
+            <Extra>I don't take that lightly, but coming from Selenium, I found the switch to be extremely quick, and it paid off in under an hour.</Extra>
             <N/>
             It has its own style that felt strange to me at first. It makes sense though. Cypress really likes chaining, and there's a reason why so many of their commands are chainable.
             (TODO: elaborate on this)
             <N/>
-            Asynchronicity is exposed to us, and it helps us understand what's going on. We may find ourselves executing a command, and putting a `.then` (dot then) to wait for the promise to finish before we execute the next thing. I've seen some other Selenium-based tools hide this from us, and honestly, that was weird. If you're used to that, this might require an adjustment.
+            We can see the asynchronicity, helping us understand what's going on. We may find ourselves executing a command, and putting a `.then` to wait for the promise to finish before we execute the next thing. I've seen some Selenium-based tools hide this from us, and honestly, that was weird.
+            <Extra>If you're used to that, this might require an adjustment.</Extra>
             <N/>
             They are very upfront about their tradeoffs, like why they only support Chrome and Electron browser right now, though they're working on Firefox and support for Edge will likely come next.
             <N/>
@@ -352,11 +369,12 @@ export default class Presentation extends React.Component {
             <N/>
             It's ambitious. They've essentially reinvited the Selenium wheel, but they've made some key design decisions that gives us a much better wheel, a hover wheel, really.
             <N/>
-            The test authoring experience is has so much to it, as if the challenge of reimplementing Selenium wasn't crazy enough.
+            The test authoring experience is extremely capable, as if the challenge of reimplementing Selenium wasn't crazy enough.
             <N/>
             There will be things they haven't developed yet, like cross-browser support.
             <N/>
             There will be bugs, though I don't remember any in my experience, I just know there's a large surface area of code for them to write and maintain, and they'll need to keep up with any issues that come up.
+            <Extra>Fortunately, the test runner is MIT licensed and open source, they've had 36 contributors and I think only 6 are on the core team.</Extra>
           </Notes>
         </Slide>
 
@@ -418,7 +436,7 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Heading size="2">You Did Good</Heading>
-          <Image src="images/cypress.png" />
+          <Image src="images/cypress-io-logo-inverse.png" />
 
           <Text>
             I promise, they are nice.
