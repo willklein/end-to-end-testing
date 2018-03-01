@@ -397,12 +397,19 @@ export default class Presentation extends React.Component {
 
           <Notes>
             We can inspect our DOM snapshots to understand the UI state, or what we might want to select for in our tests.
-            <N/>
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading size="2">JavaScript Debugging</Heading>
+          <Image alt="debugging our app and our tests" src="captures/debug-both.gif" />
+
+          <Notes>
             We can debug our app and inspect the appropriate scope and stack.
             <N/>
             Or we can debug our test code from here.
             <N/>
-            Having all of these debugging contexts available to use in the same debugger is really awesome.
+            Having all of these debugging contexts available to use in one tool is really nice.
           </Notes>
         </Slide>
 
