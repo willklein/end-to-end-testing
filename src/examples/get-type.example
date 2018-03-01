@@ -1,0 +1,5 @@
+it('should allow me to add todo items', function () {
+  cy.get('.new-todo')
+    .type('buy a gift for Amelia')
+    .type('{enter}')
+})

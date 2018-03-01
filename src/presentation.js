@@ -16,11 +16,16 @@ import {
 } from "spectacle";
 
 import createTheme from "spectacle-theme-nova";
+import 'spectacle-theme-nova/syntax/prism.nova.css';
+import 'spectacle-theme-nova/syntax/prism-javascript';
+
+
+import CodeSlide from 'spectacle-code-slide';
 
 const theme = createTheme();
 
 function N() {
-  return (<span><br/><br/></span>)
+  return (<React.Fragment><br/><br/></React.Fragment>)
 }
 
 function Extra(props) {
@@ -46,7 +51,7 @@ export default class Presentation extends React.Component {
       >
         <Slide>
           <Heading>End-to-End<br />Testing</Heading>
-          <Heading size="3">The Game Has Changed</Heading>
+          <Heading size="3" textColor="#DDDDDD">The Game Has Changed</Heading>
           <Text>Will Klein</Text>
 
           <Notes>
@@ -68,9 +73,11 @@ export default class Presentation extends React.Component {
           <Text>Will &amp; Diane @ JSConf US 2013<br/>Amelia Island, Florida, USA</Text>
 
           <Notes>
-            Five years ago, I attended my first JSConf.
+            My name is Will, and this is my wife Diane.
             <N/>
-            This is my wife Diane and me at Amelia Island, and if I may say, I'm grateful this tradition of including our significant others and families is continued here today.
+            Five years ago, we attended our first JSConf.
+            <N/>
+            This is us on Amelia Island, and if I may say, I'm grateful this tradition of including our significant others and families is continued here today.
             <N/>
             It just so happens we made lifelong friends that week, and in many ways, it changed our lives forever.
           </Notes>
@@ -92,16 +99,19 @@ export default class Presentation extends React.Component {
             That it all comes together and integrates successfully.
             <N/>
             Testing everything at once has been, historically, challenging.
+            <N/>
+            I asked everyone I met at JSConf this question, and out of all the awesome conversations I had, there was one that stuck out.
           </Notes>
         </Slide>
 
         <Slide>
-          <Image src="images/nicholas.jpg" />
+          <Image
+            alt="alt text"
+            height="600"
+            src="images/nicholas.jpg" />
           <Text>Meet Nicholas Boll</Text>
 
           <Notes>
-            I asked everyone I met at JSConf this question, and there was one person I found myself talking to for hours.
-            <N/>
             This is Nicholas Boll.
             He had a LOT to say.
             <N/>
@@ -117,7 +127,7 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Heading size="2">Selenium</Heading>
-          <Image src="images/selenium.png" />
+          <Image alt="alt text" src="images/selenium.png" />
 
           <Notes>
             Joining their team, I found they not only had a lot of tests, but a lot of the same problems I had experienced already. They had more of it in fact, because they had so many more tests!
@@ -159,6 +169,8 @@ export default class Presentation extends React.Component {
             We'll push a commit, tests will run, and we'll see a test failure.
             <N/>
             Run the test again, and it passes. Some other test fails. We saw so much of this, we had a build job called the flaky finder. It would just run whatever was on master, over and over again, so we could find the flakies. This challenge still pervaded our continuous integration builds and slowed us down, in a very frustrating way.
+            <N/>
+            The worst part is, we lose confidence in our tests. The whole point of our tests is to <i>give us confidence</i>.
           </Notes>
         </Slide>
 
@@ -170,18 +182,36 @@ export default class Presentation extends React.Component {
             <N/>
             At least covering the critical paths in our app, and exercising all the different UI components.
             <N/>
-            The test authoring and debug experience was... very expensive though.
+            These tests still produced valid failures, telling us when we were about to break our user experience.
             <N/>
-            You'd often find yourself with one debugger for your test code, and another for your application code.
+            Writing and maintaining these tests was... very expensive though.
             <N/>
-            It was work to get the app to the right state, before you could figure out how to query the right things, and make sure you handled cases where the browser might not be ready for the next test command.
+            You'd open one debugger for your test code, and another for your application code. This adds cognitive load to track which is which.
             <N/>
-            We wrote our own code to implicitly wait before executing certain commands.
-            The test might click a button, and the next command would try to interact with the next view, but maybe the app wasn't ready for it. Rather than drop in sleep commands in our test code, we wrote test utilities that would retry a selector until it found what it was waiting for.
+            Besides switching between debuggers, it was hard to replay tests, and figure out what exactly was wrong. Maybe the failure happened a few commands after things stopped working.
             <N/>
-            We also needed to sometimes mock web services to make it easier to test certain things. We invested a fair amount of time writing libraries that made service mocking easier.
+            You'd often have to re-run the entire spec file, dropping in breakpoints, searching for where you needed to be to diagnose the issue. You had the same problem writing new tests, if you didn't get it right the first time.
+            <Extra>I almost never do.</Extra>
+          </Notes>
+        </Slide>
+
+
+        <Slide>
+          <Heading size="2">Valuable, Expensive Tools</Heading>
+
+          <Notes>
             <N/>
-            These are just some of the things we added to our testing stack, because as valuable as these tests were, they were time consuming and sometimes painful to write.
+            We invested in improving these experiences.
+            <N/>
+            A very common problem was variable performance, and the UI not being in the right state when a command was executed.
+            <N/>
+            The test would click a button, and the next command would try to interact with the next view, but maybe the app wasn't ready for it. Rather than drop in sleep commands in our test code, we wrote test utilities that would retry a selector until it found what it was waiting for.
+            <N/>
+            This is called an implicit wait: we wanted to avoid repeating this in our test code as much as possible.
+            <N/>
+            We also liked to mock web services so it was easier testing certain things. We wrote libraries that made service mocking easier.
+            <N/>
+            These are just some of the things we added to our testing stack, because as valuable as these tests were, they were time consuming and painful to write.
           </Notes>
         </Slide>
 
@@ -198,7 +228,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Image src="images/cypress-io-logo-inverse.png" />
+          <Image alt="alt text" src="images/cypress-io-logo-inverse.png" />
 
           <Notes>
             That tool is Cypress. It's maybe a few years old now, and what started as an experiment by Brian Mann, is now supported by a team of full-time developers.
@@ -212,8 +242,82 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
+          <Heading size="2">Getting Started</Heading>
+          <Image alt="alt text" src="captures/cypress-install.gif" />
+
+          <Notes>
+            It's a JavaScript tool, so we just install with npm or whatever the latest package manager is.
+            <N/>
+            A post install script downloads an Electron app that matches your platform and CPU architecture.
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading size="2">npx cypress open</Heading>
+          <Image alt="alt text" src="captures/cypress-open post-install.gif" />
+
+          <Notes>
+            We can setup scripts to run cypress, or just invoke directly using npx if you have node 5.2 or later.
+            <N/>
+            It will launch the Electron app, the Test Runner, and tell us about some files it put under a cypress directory.
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading size="2">npx cypress open</Heading>
+          <Image
+            alt="directory tree of /cypress"
+            height="600"
+            src="images/cypress-files.png"
+          />
+
+          <Notes>
+            These are all example files and give us a reference to get started easily.
+            <N/>
+            From here we add our own spec files. I'm going to use a clone of their TodoMVC example from here.
+          </Notes>
+        </Slide>
+
+        <Slide>
+          <Heading size="2">Familiar<br/>BDD-style Tests</Heading>
+
+          <Notes>
+            I'm going to show you an example spec file, not to teach you the syntax, but to point out what will be familiar, and a small taste of the Cypress API.
+            <N/>
+            If you've ever done behavior-driven development, you'll recognize some things.
+          </Notes>
+        </Slide>
+
+        <CodeSlide
+          lang="js"
+          code={require('./examples/spec.example')}
+          ranges={[
+            { loc: [0, 35] },
+            { loc: [0, 1] },
+            { loc: [2, 3] },
+            { loc: [2, 5] },
+            { loc: [6, 7] },
+            { loc: [7, 8] },
+            { loc: [7, 11] },
+            { loc: [0, 35] }
+          ]}
+        />
+
+        <CodeSlide
+          lang="js"
+          code={require('./examples/get-type.example')}
+          ranges={[
+            { loc: [0, 5] },
+            { loc: [1, 2] },
+            { loc: [2, 3] },
+            { loc: [3, 4] },
+            { loc: [0, 5] }
+          ]}
+        />
+
+        <Slide>
           <Heading size="2">Running from CLI</Heading>
-          <Image src="captures/cypress-run 720.gif" />
+          <Image alt="alt text" src="captures/cypress-run 720.gif" />
 
           <Notes>
             We have improvements
@@ -223,8 +327,8 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size="2">Running from CLI - Results</Heading>
-          <Image src="captures/cypress-run end 720.gif" />
+          <Heading size="2">CLI Results</Heading>
+          <Image alt="alt text" src="captures/cypress-run end 720.gif" />
 
           <Notes>
             This is nice, and there's a screen recording of the whole test run unless we disable it.
@@ -232,8 +336,8 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Heading size="2">Running the Test Runner</Heading>
-          <Image src="captures/cypress-open 720.gif" />
+          <Heading size="2">The Test Runner</Heading>
+          <Image alt="alt text" src="captures/cypress-open 720.gif" />
 
           <Notes>
             If we want to write tests, or review a failure, we might launch the Cypress app and pull things up in the browser.
@@ -253,7 +357,7 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Heading size="2">UI State Time Travel</Heading>
-          <Image src="captures/cypress-open ui state 720.gif" />
+          <Image alt="alt text" src="captures/cypress-open ui state 720.gif" />
 
           <Notes>
             The lists of tests on the left is interactive. This is the "Command Log."
@@ -267,7 +371,7 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Heading size="2">Command Log Debugging</Heading>
-          <Image src="captures/cypress-open debug command log 720.gif" />
+          <Image alt="alt text" src="captures/cypress-open debug command log 720.gif" />
 
           <Notes>
             Speaking of debugging, that part of the experience has some serious upgrades.
@@ -278,7 +382,7 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Heading size="2">DOM Debugging</Heading>
-          <Image src="captures/cypress-open debug DOM 720.gif" />
+          <Image alt="alt text" src="captures/cypress-open debug DOM 720.gif" />
 
           <Notes>
             We can inspect our DOM snapshots to understand the UI state, or what we might want to select for in our tests.
@@ -319,7 +423,7 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Heading size="2">Best Practices</Heading>
-          <Image src="images/timeouts-and-performance.png" />
+          <Image alt="alt text" src="images/timeouts-and-performance.png" />
 
           <Notes>
             As I've been re-reading their blog posts and the documentation, I realized something else.
@@ -436,7 +540,7 @@ export default class Presentation extends React.Component {
 
         <Slide>
           <Heading size="2">You Did Good</Heading>
-          <Image src="images/cypress-io-logo-inverse.png" />
+          <Image alt="alt text" src="images/cypress-io-logo-inverse.png" />
 
           <Text>
             I promise, they are nice.
@@ -454,7 +558,7 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide>
-          <Image src="images/family.jpg" />
+          <Image alt="alt text" src="images/family.jpg" />
 
           <Notes>
             I also want to thank Nicholas. I'm happy to share he still goes on and on for hours, and I'm still learning a lot from him.

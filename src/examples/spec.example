@@ -1,0 +1,35 @@
+describe('TodoMVC - React', () => {
+
+  beforeEach(() => {
+    cy.visit('/')
+  })
+
+  context('When page is initially opened', () => {
+    it('should focus on the todo input field', () => {
+      cy.focused()
+        .should('have.class', 'new-todo')
+    })
+  })
+
+  context('No Todos', () => {
+    it('should hide #main and #footer', () => {
+      cy.get('.todo-list li').should('not.exist')
+      cy.get('.main').should('not.exist')
+      cy.get('.footer').should('not.exist')
+    })
+  })
+
+  context('New Todo', () => {
+    // New commands used here:
+    // https://on.cypress.io/type
+    // https://on.cypress.io/eq
+    // https://on.cypress.io/find
+    // https://on.cypress.io/contains
+    // https://on.cypress.io/should
+    // https://on.cypress.io/as
+
+    it('should allow me to add todo items', () => {
+      /* ... */
+    })
+  })
+})
