@@ -320,9 +320,9 @@ export default class Presentation extends React.Component {
           <Image alt="alt text" src="captures/cypress-run 720.gif" />
 
           <Notes>
-            We have improvements
+            Now that we've seen all there is to the setup process and what a test looks like, I really want to show you how to run and debug tests.
             <N/>
-            First is the test running experience. We can run Cypress headlessly, and use it in a build within the command line.
+            We can run Cypress headlessly, like we would from CI.
           </Notes>
         </Slide>
 
@@ -331,19 +331,30 @@ export default class Presentation extends React.Component {
           <Image alt="alt text" src="captures/cypress-run end 720.gif" />
 
           <Notes>
-            This is nice, and there's a screen recording of the whole test run unless we disable it.
+            This is nice, and there's a screen recording of the whole test run by default.
           </Notes>
         </Slide>
 
         <Slide>
+          <Heading size="2">The Electron App</Heading>
+          <Image alt="alt text" src="captures/test-runner.gif" />
+
+          <Notes>
+            If we want to write tests, or review a failure, we should launch the Cypress app to run things in a browser.
+            <N/>
+            This is the Electron app.
+            <N/>
+            If we forgot to run our local dev server, Cypress will warn us. It checks whatever we configure our base URL to be.
+            <N/>
+            We can also choose which browser to use, and there's a list of spec files we can run.
+          </Notes>
+        </Slide>
+
+         <Slide>
           <Heading size="2">The Test Runner</Heading>
           <Image alt="alt text" src="captures/cypress-open 720.gif" />
 
           <Notes>
-            If we want to write tests, or review a failure, we might launch the Cypress app and pull things up in the browser.
-            <N/>
-            Opening Cypress in this way gives us an Electron app where we can run any of our spec files.
-            <N/>
             Running a spec file gives us the Test Runner. The header section has some useful information:
             <br/>
             * a summary of tests passed, failed, and how long they take. <br/>
