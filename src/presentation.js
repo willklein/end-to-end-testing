@@ -78,8 +78,6 @@ export default class Presentation extends React.Component {
             Five years ago, we attended our first JSConf.
             <N/>
             This is us on Amelia Island, and if I may say, I'm grateful this tradition of including our significant others and families is continued here today.
-            <N/>
-            It just so happens we made lifelong friends that week, and in many ways, it changed our lives forever.
           </Notes>
         </Slide>
 
@@ -96,11 +94,9 @@ export default class Presentation extends React.Component {
             To really have confidence in our apps, we need to know that things work, end to end.
             <N />
             That when we load our app, it let's us do that one thing our users care about, and that everything from the UI, to the web APIs, to the database, to the deployments,
-            That it all comes together and integrates successfully.
+            that it all comes together and integrates successfully.
             <N/>
-            Testing everything at once has been, historically, challenging.
-            <N/>
-            I asked everyone I met at JSConf this question, and out of all the awesome conversations I had, there was one that stuck out.
+            I asked everyone I met at JSConf this question, and there's one converation I'll never forget.
           </Notes>
         </Slide>
 
@@ -115,13 +111,11 @@ export default class Presentation extends React.Component {
             This is Nicholas Boll.
             He had a LOT to say.
             <N/>
-            It turns out, his wife Katrina had met Diane in the significant others track. Our partners were thrilled to introduce us, but... they were too late.
+            His wife Katrina was there too, and met Diane in the significant others track. We had no idea at the time, but they were becoming friends.
             <N/>
-            I was impressed with what his team had done, writing thousands of unit, integration, and end to end tests. I was so impressed, I applied to work at his company,
+            Well, I was impressed with what his team had done, writing thousands of unit, integration, and end to end tests. I was so impressed, I applied to work at his company,
             <N/>
-            and a few months later, I was hired and we moved out to Colorado. They helped us unload the moving truck, invited us for the holidays, and made us feel at home.
-            <N/>
-            It's amazing the kind of friendships that begin at JSConf.
+            and a few months later, I was hired and we moved out to Colorado. Nicholas and Katrina helped us unload the moving truck, invited us for the holidays, and made us feel at home.
           </Notes>
         </Slide>
 
@@ -130,17 +124,26 @@ export default class Presentation extends React.Component {
           <Image alt="alt text" src="images/selenium.png" />
 
           <Notes>
-            Joining their team, I found they not only had a lot of tests, but a lot of the same problems I had experienced already. They had more of it in fact, because they had so many more tests!
+            Joining this new team, I found they not only had a lot of tests, but a lot of the same problems I had experienced already. They had more of it in fact, because they had so many more tests!
             <N/>
-            They relied on the same tool we had used with mixed success on my previous team: Selenium.
+            They relied on the same tool we used on my previous team: Selenium.
             <N/>
-            Selenium is a set of tools built in Java that lets us write test and browser automation code in any language, send commands to a Selenium service, and have that service manage those commands as it tries to execute them in any web browser.
+            Selenium is a set of tools built in Java that lets us write browser-based tests.
             <N/>
-            It's amazing, and for years it's given us a way to test our apps from user's point of view, using real browsers.
+            Our test code would send browser commands, like visit a page, or click a button, to a Selenium service, and that service would manage those commands as it tried to execute them in a web browser.
             <N/>
-            There are challenges though. Our test code might be written in a language other than JavaScript. It's preferrable to use a library that speaks the Webdriver API that Selenium uses. There are drivers written for each browser, that need to be maintained.
+            It's actuall quite amazing, and for years it's been a great way to test our apps from user's point of view, using real browsers.
             <N/>
-            On top of all these abstractions and interfaces, we also have the asynchronous nature of the communation to and from that Selenium service, between our test code and the service, and the service and the browsers.
+            There are challenges though. Our test code might be written in a language other than JavaScript.
+            <Extra>and all to often, it was</Extra>
+            <N/>
+            You'd need a library that knew how to talk to the Selenium service, and each one had its own syntax for your test code to use. There are drivers written for each browser, and they might each have their own bugs.
+            <N/>
+            On top of all these abstractions and interfaces, we also have the asynchronous nature of the communation involving the Selenium service, between our test code and the service, and the service and the browsers.
+            <N/>
+            Any one of these interfaces could be the source of a test failure.
+            <N/>
+            Did I mention it was written in Java? I remember wishing for an alternative written in JavaScript.
           </Notes>
         </Slide>
 
@@ -154,9 +157,9 @@ export default class Presentation extends React.Component {
           <Notes>
             Then there's the greatest complexity of all: our application.
             <N/>
-            Our apps make calls to a backend, at page load, or whenever a user interacts with the UI. Rendering is typically asynchronous, and it's hard to know when it's "done."
+            Modern apps make plenty of API calls, at page load, or whenever a user interacts with the UI. Rendering is typically asynchronous, and it's hard to know when it's "done" rendering.
             <N/>
-            I've found that these calls don't always come back with the same timing, or in the same order. Sometimes, backends experience higher than usual load, some things take longer than usual, and we see strange behavior in our app. I've found this is very typical in virtualized build and test environments, where we usually run these sorts of tests. These abberations can even cause our tests to fail.
+            These calls don't always come back with the same timing, or even in the same order. Sometimes, backends experience higher than normal load, and we see strange behavior in our app, particularly when running an automated test that works a lot faster than humans do. These abberations can even cause our tests to fail. It only gets worse in a virtualized build and CI environments, where we usually run these tests.
           </Notes>
         </Slide>
 
@@ -164,11 +167,15 @@ export default class Presentation extends React.Component {
           <Heading size="2">Confidence, Failures, and Flakiness</Heading>
 
           <Notes>
-            The problem is with using both Selenium and all the things we do client-side in JavaScript. It's a recipe for frustration.
+            The problem is with using Selenium to test a modern web app. It's a recipe for frustration.
             <N/>
-            We'll push a commit, tests will run, and we'll see a test failure.
+            We'll push a commit, tests will run, and a test will fail.
             <N/>
-            Run the test again, and it passes. Some other test fails. We saw so much of this, we had a build job called the flaky finder. It would just run whatever was on master, over and over again, so we could find the flakies. This challenge still pervaded our continuous integration builds and slowed us down, in a very frustrating way.
+            Run the test again, and it passes. Was it a fluke?
+            <N/>
+            We run our tests again, and a different test fails. This is called flakiness.
+            <N/>
+            We saw so much of this, we had a build job called the flaky finder. It would just run whatever was on master, over and over again, so we could root out the flakiest tests. Even with this, we still had new flakies affect our development process.
             <N/>
             The worst part is, we lose confidence in our tests. The whole point of our tests is to <i>give us confidence</i>.
           </Notes>
@@ -430,12 +437,12 @@ export default class Presentation extends React.Component {
             <N/>
             Selenium only gave us serialized DOM information in our test code. It had to be passed through APIs from the browser and through Selenium. Here, we get direct access to the DOM, because Cypress runs in the same JavaScript runtime.
             <N/>
-            Cypress supplies some really useful service mocking utilities. We can specify a route, like `/users` (slash users), match on request method or parameters, like a 'GET' method, and provide fixture data that should return for that matching service call.
+            Cypress supplies some really useful service mocking utilities. We can specify a route, like `/users`, match on request method, like a 'GET' method, and provide fixture data that should return for that matching service call.
             <N/>
             Cypress does this using Sinon.js, and it's using other open source tools under the hood like Mocha and Chai. They've rolled up these tools for us in one cohesive package, so we can spend less time selecting and maintaining these dependencies.
             <N/>
             Oh, another one they include is jQuery. For anyone that thinks jQuery is obsolete, it will always be welcome in our browser tests.
-            <Extra>The selecting and DOM traversal API is hard to beat.</Extra>
+            <Extra>Its DOM selection and DOM traversal APIs really useful here.</Extra>
           </Notes>
         </Slide>
 
@@ -581,7 +588,9 @@ export default class Presentation extends React.Component {
           <Notes>
             I also want to thank Nicholas. I'm happy to share he still goes on and on for hours, and I'm still learning a lot from him.
             <N/>
-            Our daughters? They were born two years ago, a month apart. This summer, they will both become big sisters. I really wanted to bring my family here, but her doctor
+            This is us with our families. We each have a daughter, born two years ago a month apart. This summer, they will both become big sisters. I really wanted to bring my family here, but my wife is five months pregnant, my daughter is a wants to climb everywhere, and I could barely stand an 8 hr flight.
+            <N/>
+            Oh, and her doctor told me it was a really bad idea, and called me an idiot for even asking.
           </Notes>
         </Slide>
 
